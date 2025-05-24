@@ -11,8 +11,7 @@
 .product-image-container {
   position: relative;
   width: 100%;
-  padding-top: 100%; /* 1:1 aspect ratio (square) - adjust as needed */
-  overflow: hidden;
+  padding-top: 100%;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -51,4 +50,44 @@
 .product-price {
   color: #bc7863;
   margin-bottom: 8px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-cart-btn {
+  cursor: pointer;
+  width: 60%;
+  position: absolute;
+  padding: 0.7rem 1.4rem;
+  text-align: center;
+  border-radius: 23px;
+  bottom: 3%;
+  left: 50%;
+  transform: translate(-50%, 3%);
+  &.filled {
+    background-color: #C63B0F;
+  }
+  &.large {
+    width: 80%;
+  }
+}
+.add-to-cart-txt {
+  color: #807977;
+  font-size: small;
+  float: right;
+  font-weight: 600;
+  margin-left: 10px;
+  &.filled {
+    color: #ffffff;
+    margin-left: 0px;
+  }
+}
+.add-cart-img {
+  display: inline;
+  width: 18px;
+  object-fit: contain;
+  float: left;
 }

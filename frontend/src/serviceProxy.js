@@ -5,7 +5,7 @@ export const makeRequest = () => {
 }
 
 const http = axios.create({
-  baseURL: process.env.serverurl || 'http://localhost:8080/api',
+  baseURL: 'http://localhost:8080/api',
   headers: {
     'Content-Type': 'application/json',
   },
