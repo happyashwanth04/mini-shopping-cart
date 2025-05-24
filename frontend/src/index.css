@@ -1,26 +1,49 @@
-@import '@fontsource/red-hat-text';
+@import "@fontsource/red-hat-text";
 :root {
-  font-family: 'Red Hat Text', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  font-family: "Red Hat Text", sans-serif;
+  line-height: 1;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  background-color: FEFDFC;
 }
 
 body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  padding: 5rem 4rem;
+  box-sizing: border-box;
+  min-width: 320px;
+  max-width: 1440px;
+  background-color: #fefdfd;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  width: 100%;
 }
 
+h3 {
+  font-size: small;
+  margin: auto;
+  font-weight: 600;
+}
 
+p {
+  font-size: x-small;
+  margin: auto;
+  font-weight: 600;
+}
+span {
+  font-size: xx-small;
+}
 
+h2 {
+  font-size: xx-large;
+  font-weight: 600;
+}

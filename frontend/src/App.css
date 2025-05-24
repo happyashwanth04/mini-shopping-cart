@@ -1,1 +1,24 @@
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 3fr));
+  gap: 23px;
+  margin-bottom: 40px;
+}
+.app-container {
+  display: flex;
+  height: auto;
+  column-gap: 20px;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
 
+.title {
+  color: #3f2d28;
+  margin-bottom: 40px;
+  margin-top: 0px;
+}
+.product-section {
+  display: flex;
+  flex-direction: column;
+}
