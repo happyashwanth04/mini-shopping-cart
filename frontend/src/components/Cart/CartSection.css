@@ -6,7 +6,7 @@
   background-color: #ffffff;
   max-width: 28%;
   height: fit-content;
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     max-width: 100%;
   }
 }

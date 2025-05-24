@@ -5,10 +5,9 @@ export const makeRequest = () => {
 }
 
 const http = axios.create({
-  baseURL: 'https://orderfoodonline.deno.dev/api',
+  baseURL: process.env.serverurl || 'http://localhost:8080/api',
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin':'*'
   },
 });
 
