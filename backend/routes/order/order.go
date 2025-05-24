@@ -1,10 +1,7 @@
 package order
 
 import (
-	"encoding/json"
 	"errors"
-	"fmt"
-	"os"
 	"shoppingcart/models"
 
 	"shoppingcart/repositories/product"
@@ -53,22 +50,13 @@ func (oc *OrderController) CreateOrder(gc *gin.Context) {
 	}
 
 	id := uuid.New()
-	fileName := fmt.Sprintf("order-%s.json", id)
-	file, err := os.Create(fileName)
 	responseObject := &models.OrderResponse{
 		ID:         id,
 		Products:   productsList,
 		CouponCode: request.CouponCode,
 		Items:      request.Items,
 	}
-	if err != nil {
-		gc.JSON(400, gin.H{"error": err.Error()})
-		return
-	}
-	defer file.Close()
-	encoder := json.NewEncoder(file)
-	encoder.SetIndent("", "    ")
-	err = encoder.Encode(responseObject)
+	err = oc.productService.SetProductToDB(id, responseObject)
 	if err != nil {
 		gc.JSON(500, gin.H{"error": err.Error()})
 		return

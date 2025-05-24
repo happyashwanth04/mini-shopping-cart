@@ -2,8 +2,11 @@ package product
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"shoppingcart/models"
+
+	"github.com/google/uuid"
 )
 
 type ProductRepository struct {
@@ -23,4 +26,20 @@ func (pr *ProductRepository) GetProductsFromDB() ([]*models.Product, error) {
 	}
 
 	return products, nil
+}
+
+func (pr *ProductRepository) SetProductToDB(id uuid.UUID, rawObject interface{}) error {
+	fileName := fmt.Sprintf("order-%s.json", id)
+	file, err := os.Create(fileName)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	encoder := json.NewEncoder(file)
+	encoder.SetIndent("", "    ")
+	err = encoder.Encode(rawObject)
+	if err != nil {
+		return err
+	}
+	return nil
 }
