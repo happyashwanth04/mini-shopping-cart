@@ -1,26 +1,35 @@
 package main
 
 import (
+	"log"
+	"os"
 	product_repository "shoppingcart/repositories/product"
 	"shoppingcart/routes/order"
 	"shoppingcart/routes/product"
+	"strings"
+	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	r := gin.Default()
-	r.Use(func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-		c.Writer.Header().Set("Access-Control-Allow-Headers", "content-type")
-		if c.Request.Method == "OPTIONS" {
-			c.Status(200)
-			return
-		}
+	r.SetTrustedProxies(nil)
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     getTrustedOrigins(),
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
 
-		c.Next()
-	})
 	productCtrl := product.NewProductController(&product_repository.ProductRepository{})
 	orderCtrl := order.NewOrderController(&product_repository.ProductRepository{})
 	r.GET("/api/product", productCtrl.GetProducts)
@@ -33,4 +42,9 @@ func main() {
 		})
 	})
 	r.Run(":8080")
+}
+
+func getTrustedOrigins() []string {
+	origins := os.Getenv("TRUSTED_ORIGIN")
+	return strings.Split(origins, ",")
 }
