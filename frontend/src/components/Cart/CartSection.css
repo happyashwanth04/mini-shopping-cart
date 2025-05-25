@@ -93,3 +93,19 @@
     font-size: x-large;
     font-weight: 600;
 }
+
+.confirm-order-btn {
+  cursor: pointer;
+  width: 80%;
+  padding: 0.7rem 1.4rem;
+  text-align: center;
+  border-radius: 23px;
+  background-color: #C63B0F;
+  &.center {
+    align-items: center;
+    position: relative;
+    left:50%;
+    transform: translate(-50%);
+    width: 90%;
+  }
+}

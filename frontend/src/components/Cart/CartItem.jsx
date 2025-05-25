@@ -1,6 +1,10 @@
 import React from "react";
 
-export default function CartItem({ cartProduct, cartClickHanlder }) {
+export default function CartItem({
+  cartProduct,
+  cartClickHanlder,
+  showRemoveIcon = true,
+}) {
   const { name, quantity, price } = cartProduct;
   return (
     <div className="cartitem-container">
@@ -16,12 +20,14 @@ export default function CartItem({ cartProduct, cartClickHanlder }) {
           ).toFixed(2)}`}</span>
         </div>
       </div>
-      <div
-        className="cartitem-right-section"
-        onClick={(e) => cartClickHanlder(e, cartProduct.id, "del")}
-      >
-        <img className="add-cart-img" src="/assets/remove-icon.svg" alt="" />
-      </div>
+      {showRemoveIcon ? (
+        <div
+          className="cartitem-right-section"
+          onClick={(e) => cartClickHanlder(e, cartProduct.id, "del")}
+        >
+          <img className="add-cart-img" src="/assets/remove-icon.svg" alt="" />
+        </div>
+      ) : null}
     </div>
   );
 }

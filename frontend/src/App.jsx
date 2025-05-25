@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { get } from "./serviceProxy";
 import { DeviceTypeContext } from "./contexts/useDeviceType";
 import { getDeviceType } from "./utils";
-
+import OrderSuccessModal from "./components/Order/OrderSuccessModal";
 function App() {
   const [products, setProducts] = useState(null);
 
@@ -19,6 +19,15 @@ function App() {
 
   const [cartProducts, setCartProducts] = useState([]);
 
+  const [orderSuccess, setOrderSuccess] = useState(false);
+
+  const onPlaceNewOrder = (e) => {
+    e.preventDefault();
+    setOrderSuccess(false);
+    setCartInfo({});
+    setCartTotal(0);
+    setCartProducts([]);
+  };
   useEffect(() => {
     let total = 0;
 
@@ -32,7 +41,7 @@ function App() {
       }) ?? [];
 
     setCartTotal(total);
-    
+
     setCartProducts(updatedCartProducts);
   }, [cartInfo]);
 
@@ -117,7 +126,15 @@ function App() {
         cartTotal={cartTotal}
         cartClickHanlder={cartClickHanlder}
         cartProducts={cartProducts}
+        setOrderSuccess={setOrderSuccess}
       />
+      {orderSuccess ? (
+        <OrderSuccessModal
+          cartProducts={cartProducts}
+          cartTotal={cartTotal}
+          onPlaceNewOrder={onPlaceNewOrder}
+        />
+      ) : null}
     </div>
   );
 }

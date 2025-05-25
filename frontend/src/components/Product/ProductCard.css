@@ -70,9 +70,6 @@
   &.filled {
     background-color: #C63B0F;
   }
-  &.large {
-    width: 80%;
-  }
 }
 .add-to-cart-txt {
   color: #807977;
