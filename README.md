@@ -7,6 +7,7 @@ A full-stack shopping cart application with:
 - **Database**: Simple JSON based file I/O (Render free tier)
 
 ## Live Demo
+   (Expect delay in 1 st response its due to cold start of backend service)
 - **Frontend**: [https://mini-shopping-cart-comu.vercel.app/](https://mini-shopping-cart-comu.vercel.app/)
 - **Backend API**: [https://mini-shopping-cart-oreg.onrender.com](https://mini-shopping-cart-oreg.onrender.com)
 
